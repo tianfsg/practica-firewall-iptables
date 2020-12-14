@@ -36,11 +36,17 @@ echo "El default gateway configurado es: $def_gateway"
 echo " "
 echo "----------------------------------------------------"
 
+#--------------------------------------------------------------eliminar default gateway????
+
+
+
+
+
 #--------------------------------------------------------------activacion de ip forward:
 
 echo " "
 echo "Activando IP Forward..."
-echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf #cambio permanente en el archivo sysctl.conf. IMPORTANTE EL >>, YA QUE NO SOBREESCRIBE!!!
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf #cambio permanente en el archivo sysctl.conf.
 sudo sysctl -p #pides a sysctl revisar los cambios en la configuracion; deberia salir el net.ipv4.ip_forward = 1.
 /etc/init.d/networking restart #reinicias el servicio de networking para aplicar los cambios
 ipfwd_status=$(cat /proc/sys/net/ipv4/ip_forward) #la variable ipfwd_status toma el valor del estado de ip forward: 1, activo; 0, inactivo.
@@ -56,4 +62,3 @@ echo "Estado de IP Forward: $ipfwd_status"
 echo "IP Forwarding activado satisfactoriamente."
 echo " "
 echo "----------------------------------------------------"
-
