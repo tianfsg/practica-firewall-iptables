@@ -8,7 +8,7 @@ A fictional company has hired us as security consultants. Our first job is to cr
 
 The company's infrastructure must have:
 
-- A Local network (192.168.1.0/24): devices on this network should only be allowed to browse the Internet (HTTP + HTTPS) and the company's intranet. SSH traffic is allowed as long as it's used to access the web server located in the DMZ.
-- A DMZ network: inside this network, an HTTP server has to be set up. Said server can be accessed publicly from the internet, and only managed through SSH from the local network.
+- A Local network (10.0.0.0/8): devices on this network should only be allowed to browse the Internet (HTTP + HTTPS) and the company's intranet. SSH traffic is allowed as long as it's used to access the web server located in the DMZ.
+- A DMZ network (20.0.0.0/8): inside this network, an HTTP server has to be set up. Said server can be accessed publicly from the internet, and only managed through SSH from the local network.
 
 As we're working with a DMZ network, both networks need to be fully independent and secure. Using the Linux-based firewall, we can protect the local network against external attackers and access from the HTTP server, which must also be protected against unauthorised SSH logins.
