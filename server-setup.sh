@@ -42,7 +42,12 @@ echo "----------------------------------------------------"
 sleep $delaytime
 
 #--------------------------------------------------------------instalacion del servidor web apache2 y servidor ssh
-
+echo " "
+echo "Instalando net-tools..."
+echo " "
+apt install net-tools -y
+echo " "
+echo "net-tools instalado correctamente"
 echo " "
 echo "Instalando servidor Apache2..."
 echo " "
