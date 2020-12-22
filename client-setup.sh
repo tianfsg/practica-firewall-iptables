@@ -40,7 +40,8 @@ sleep $delaytime
 echo " "
 echo "Asignando IP 30.0.0.2/8 a la interfaz ens33..."
 echo " "
-ifconfig ens33 30.0.0.2/8
+ip a flush dev ens33
+ip a add 30.0.0.2/8 dev ens33
 echo " "
 echo "La interfaz se ha configurado correctamente"
 echo " "
@@ -57,7 +58,7 @@ sleep $delaytime
 echo " "
 echo "Configurando default gateway 30.0.0.1"
 echo " "
-route add default gw 30.0.0.1
+ip route add default via 30.0.0.1
 echo " "
 route -n
 echo " "
