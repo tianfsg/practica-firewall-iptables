@@ -72,17 +72,21 @@ echo "Se va a realizar la siguiente asignacion de IP:"
 echo " "
 echo " - eth0: 30.0.0.1/8 --> Red Local"
 echo " - eth2: 20.0.0.1/8 --> Red DMZ"
+echo " - eth1: IP DINAMICA --> Firewall"
 echo " "
 ifconfig eth0 30.0.0.1/8
 ifconfig eth2 20.0.0.1/8
+dhclient eth1
 echo " "
 sleep $delaytime
 echo "Las IP se han configurado satisfactoriamente:"
 echo " "
 eth0_info=$(ip a | grep inet | grep eth0)
 eth2_info=$(ip a | grep inet | grep eth2)
+eth1_info=$(ip a | grep inet | grep eth1)
 echo "- eth0: $eth0_info"
 echo "- eth2: $eth2_info"
+echo "- eth1: $eth1_info"
 echo " "
 sleep $delaytime
 echo "----------------------------------------------------"
