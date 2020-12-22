@@ -38,9 +38,9 @@ sleep $delaytime
 # asignamos la IP 10.0.0.2/8 al dispositivo cliente
 
 echo " "
-echo "Asignando IP 10.0.0.2/8 a la interfaz ens33..."
+echo "Asignando IP 30.0.0.2/8 a la interfaz ens33..."
 echo " "
-ifconfig ens33 10.0.0.2/8
+ifconfig ens33 30.0.0.2/8
 echo " "
 echo "La interfaz se ha configurado correctamente"
 echo " "
@@ -55,9 +55,9 @@ sleep $delaytime
 # asignamos la IP de una de las interfaces del firewall como gateway del cliente.
 
 echo " "
-echo "Configurando default gateway 10.0.0.1"
+echo "Configurando default gateway 30.0.0.1"
 echo " "
-route add default gw 10.0.0.1
+route add default gw 30.0.0.1
 echo " "
 route -n
 echo " "
