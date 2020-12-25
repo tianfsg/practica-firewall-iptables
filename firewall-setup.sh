@@ -71,22 +71,22 @@ echo " "
 echo "Se va a realizar la siguiente asignacion de IP:"
 echo " "
 echo " - eth0: 30.0.0.1/8 --> Red Local"
-echo " - eth2: 20.0.0.1/8 --> Red DMZ"
-echo " - eth1: IP DINAMICA --> Firewall"
+echo " - eth1: 20.0.0.1/8 --> Red DMZ"
+echo " - eth2: IP DINAMICA --> Firewall"
 echo " "
 ifconfig eth0 30.0.0.1/8
-ifconfig eth2 20.0.0.1/8
-dhclient eth1
+ifconfig eth1 20.0.0.1/8
+dhclient eth2
 echo " "
 sleep $delaytime
 echo "Las IP se han configurado satisfactoriamente:"
 echo " "
 eth0_info=$(ip a | grep inet | grep eth0)
-eth2_info=$(ip a | grep inet | grep eth2)
 eth1_info=$(ip a | grep inet | grep eth1)
+eth2_info=$(ip a | grep inet | grep eth2)
 echo "- eth0: $eth0_info"
-echo "- eth2: $eth2_info"
-echo "- eth1: $eth1_info"
+echo "- eth1: $eth2_info"
+echo "- eth2: $eth1_info"
 echo " "
 sleep $delaytime
 echo "----------------------------------------------------"
@@ -95,6 +95,7 @@ echo "----------------------------------------------------"
 echo " "
 echo "Configurando firewall..."
 echo " "
+
 #Reseteamos las normas
 iptables -F
 iptables -X
@@ -111,10 +112,11 @@ iptables -t nat -P POSTROUTING ACCEPT
 #En teoria habilitamos todos los puertos del firewall de manera forward para que pasen a traves de el
 iptables -A FORWARD -i eth0 -o eth2 -p tcp --dport 80 -j ACCEPT
 iptables -A FORWARD -i eth0 -o eth2 -p tcp --dport 443 -j ACCEPT
-iptables -A FORWARD -i eth0 -o eth2 -p tcp --dport 53 -j ACCEPT
 iptables -A FORWARD -i eth0 -o eth2 -p udp --dport 53 -j ACCEPT
+
 #Reciprocidad para todas las reglas anteriores
-iptables -A FORWARD -i eth0 -o eth2 -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A FORWARD -i eth2 -o eth0 -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A FORWARD -i eth2 -o eth0 -p udp -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -t nat -A POSTROUTING -s 30.0.0.0/8 -o eth2 -j MASQUERADE
 
 #Para que entre de internet la peticion al DMZ
@@ -126,6 +128,7 @@ iptables -t nat -A PREROUTING -i eth2 -p tcp --dport 80 -j DNAT --to 20.0.0.2:80
 iptables -A FORWARD -s 30.0.0.0/8 -d 20.0.0.0/8 -p tcp --dport=80 -j ACCEPT
 iptables -A FORWARD -s 30.0.0.0/8 -d 20.0.0.0/8 -p tcp --dport=22 -j ACCEPT
 iptables -A FORWARD -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+
 
 iptables -L
 
