@@ -15,4 +15,4 @@ Dado que estamos trabajando con una Red DMZ, esta ha de ser aislada y dotada de 
 
 # Autores
 
-Proyecto realizado por Sebastián Gutiérrez y Jorge Martínez, estudiantes de segundo año de Ingeniería del Software en U-Tad
+Proyecto realizado por [Sebastián Gutiérrez](https://github.com/Willyfsg) y [Jorge Martínez](https://github.com/jorgemhdev), estudiantes de segundo año de Ingeniería del Software en U-Tad
