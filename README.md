@@ -1,14 +1,18 @@
-# DMZ-scripts
-Automatic setup scripts for a Kali-based firewall used in a local network + DMZ network environment.
+# Práctica de Firewall con iptables
 
-A project by Sebastian Francisco Gutierrez & Jorge Martinez Hurtado, 2nd year Software Engineering Students @ U-Tad
+Scripts de configuración automáticos para un firewall basado en Kali Linux en una arquitectura de red con una Red Local y una Red DMZ.
 
-# The problem:
-A fictional company has hired us as security consultants. Our first job is to create their network security infrastructure using a Linux-based firewall. Said firewall will be set up using rules with iptables.
+# El problema:
+Una empresa ficticia nos ha contratado como consultores de seguridad. Nuestro primer trabajo es crear su infraestructura de red usando un firewall basado en Linux. Dicho firewall se configuará utilizando reglas con iptables.
 
-The company's infrastructure must have:
+La infraestructura de la empresa debe tener:
 
-- A Local network (10.0.0.0/8): devices on this network should only be allowed to browse the Internet (HTTP + HTTPS) and the company's intranet. SSH traffic is allowed as long as it's used to access the web server located in the DMZ.
-- A DMZ network (20.0.0.0/8): inside this network, an HTTP server has to be set up. Said server can be accessed publicly from the internet, and only managed through SSH from the local network.
+- Red Local (30.0.0.0/8): los dispositivos conectados a esta red sólo pueden navegar por Internet (HTTP + HTTPS) y acceder por SSH únicamente al servidor localizado en la Red DMZ.
 
-As we're working with a DMZ network, both subnets need to be fully independent and secure. Using the Linux-based firewall, we can protect the local network against external attackers and access from the HTTP server, which must also be protected against unauthorised SSH logins.
+- Red DMZ (20.0.0.0/8): en esta red únicamente se encuentra un servidor Apache2 HTTP. Dicho servidor ha de ser públicamente accesible desde Internet, y accesible por SSH únicamente desde la Red Local de la empresa (30.0.0.0/8).
+
+Dado que estamos trabajando con una Red DMZ, esta ha de ser aislada y dotada de la seguridad pertinente. Usando el firewall basado en Linux, podemos dotar a la infraestructura de la seguridad necesaria contra amenazas externas.
+
+# Autores
+
+Proyecto realizado por Sebastián Gutiérrez y Jorge Martínez, estudiantes de segundo año de Ingeniería del Software en U-Tad
